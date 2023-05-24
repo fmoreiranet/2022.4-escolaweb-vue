@@ -13,16 +13,25 @@ export default class UserService {
         }
         return "";
     }
+    getHeaders() {
+        const token = this.getToken();
+        const header = {
+            'Accept': '*/',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': '*',
+            'Content-Type': 'application/json',
+            'Authorization': token
+        }
+        return header;
+    }
 
     //CRUD ----------------------
     async addAluno(aluno: Aluno, callback: any) {
+
         const parameter = {
             method: 'POST',
             body: JSON.stringify(aluno),
-            headers: {
-                'Authorization': this.getToken(),
-                'Content-Type': 'application/json',
-            }
+            headers: this.getHeaders()
         };
         await fetch(process.env.URL_API + "aluno", parameter)
             .then(res => res.text())
@@ -39,12 +48,7 @@ export default class UserService {
     async getAllAluno(callback: any) {
         const parameter = {
             method: 'GET',
-            headers: {
-                'Accept': '*/',
-                'Authorization': this.getToken(),
-                //'User-Agent': 'Thunder Client (https://www.thunderclient.com)',
-                'Content-Type': 'application/json'
-            },
+            headers: this.getHeaders()
         };
         const url = new URL(process.env.URL_API + "aluno");
         await fetch(url.href, parameter)
@@ -64,10 +68,7 @@ export default class UserService {
         const parameter = {
             method: 'PUT',
             body: JSON.stringify(obj),
-            headers: {
-                'Authorization': this.getToken(),
-                'Content-Type': 'application/json'
-            }
+            headers: this.getHeaders()
         };
         await fetch(process.env.URL_API + "aluno", parameter)
             .then(res => res.text())
@@ -87,10 +88,7 @@ export default class UserService {
         const parameter = {
             method: 'DELETE',
             body: JSON.stringify(obj),
-            headers: {
-                'Authorization': this.getToken(),
-                'Content-Type': 'application/json'
-            }
+            headers: this.getHeaders()
         };
         await fetch(process.env.URL_API + "aluno", parameter)
             .then(res => res.text())
@@ -126,13 +124,6 @@ export default class UserService {
     }
 
     valideResult(result: IResponse) {
-        // response = {
-        //     error: "",
-        //     data: [{}],
-        //     requestDate: "",
-        //     message: ""
-        // }
-
         if (result.error && (result.error !== "" || result.error !== null))
             throw new Error(result.error);
     }
