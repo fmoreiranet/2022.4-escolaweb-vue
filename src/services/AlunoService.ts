@@ -1,4 +1,4 @@
-import { process } from "@/env";
+// import { import } from "@/env";
 import type Aluno from "@/model/Aluno.js";
 import type { IResponse } from "@/types/Response.js";
 
@@ -33,7 +33,7 @@ export default class UserService {
             body: JSON.stringify(aluno),
             headers: this.getHeaders()
         };
-        await fetch(process.env.URL_API + "aluno", parameter)
+        await fetch(import.meta.env.API + "aluno", parameter)
             .then(res => res.text())
             .then(txt => {
                 const result = JSON.parse(txt);
@@ -50,8 +50,7 @@ export default class UserService {
             method: 'GET',
             headers: this.getHeaders()
         };
-        const url = new URL(process.env.URL_API + "aluno");
-        await fetch(url.href, parameter)
+        await fetch(import.meta.env.API + "aluno", parameter)
             .then(res => res.text())
             .then(content => {
                 const result = JSON.parse(content);
@@ -70,7 +69,7 @@ export default class UserService {
             body: JSON.stringify(obj),
             headers: this.getHeaders()
         };
-        await fetch(process.env.URL_API + "aluno", parameter)
+        await fetch(import.meta.env.API + "aluno", parameter)
             .then(res => res.text())
             .then(content => {
                 const result = JSON.parse(content);
@@ -90,7 +89,7 @@ export default class UserService {
             body: JSON.stringify(obj),
             headers: this.getHeaders()
         };
-        await fetch(process.env.URL_API + "aluno", parameter)
+        await fetch(import.meta.env.API + "aluno", parameter)
             .then(res => res.text())
             .then(content => {
                 const result = JSON.parse(content);
@@ -109,7 +108,7 @@ export default class UserService {
             method: 'POST',
             body: JSON.stringify(obj)
         };
-        await fetch(process.env.URL_API + "aluno/login", parameter)
+        await fetch(import.meta.env.API + "aluno/login", parameter)
             .then(res => res.text())
             .then(content => {
                 const result = JSON.parse(content);
