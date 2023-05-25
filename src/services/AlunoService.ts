@@ -1,4 +1,4 @@
-import { process } from "../env.js"
+import { process } from "@/env";
 import type Aluno from "@/model/Aluno.js";
 import type { IResponse } from "@/types/Response.js";
 

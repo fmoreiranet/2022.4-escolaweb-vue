@@ -1,5 +1,7 @@
 <template>
     <LoadingComponent :show="loading" />
+
+    <NavBarComponent />
     <section class="container">
         <h2>Cadastro Aluno</h2>
         <form action="" class="" id="formCadadastro" autocomplete="off">
@@ -33,6 +35,7 @@
 
 <script setup lang="ts">
 import LoadingComponent from '@/components/LoadingComponent.vue';
+import NavBarComponent from '@/components/NavBarComponent.vue';
 import Aluno from '@/model/Aluno';
 import AlunoService from '@/services/AlunoService';
 import { ref } from 'vue';

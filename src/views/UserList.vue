@@ -1,6 +1,7 @@
 <template>
     <div>
         <LoadingComponent :show="loading" />
+        <NavBarComponent />
         <table class='table'>
             <tr>
                 <th>Matricula</th>
@@ -24,6 +25,7 @@
 
 <script setup lang="ts">
 import LoadingComponent from '@/components/LoadingComponent.vue';
+import NavBarComponent from '@/components/NavBarComponent.vue';
 import AlunoService from '@/services/AlunoService';
 import { onMounted, ref } from 'vue';
 
